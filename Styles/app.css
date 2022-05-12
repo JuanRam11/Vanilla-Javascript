@@ -1,0 +1,8 @@
+#canvas1 {
+  box-sizing: border-box;
+  display: flex;
+  margin: auto;
+  position: relative;
+  border: solid 1px #000;
+  border-radius: 5px;
+}
