@@ -8,7 +8,8 @@ window.addEventListener('load', () => {
   //Settings
   ctx.lineWidth = 30;
   ctx.lineCap = 'round';
-  ctx.strokeStyle = 'red';
+  ctx.strokeStyle = 'black';
+  ctx.fillStyle = '#FFF';
 
   class Fractal {
     constructor(canvasWidth, canvasHeight) {

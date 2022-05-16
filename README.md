@@ -1,2 +1,3 @@
 # Vanilla-Javascript
-Vanilla Javascript with HTML, CSS and Vanilla
+
+SlowFlake with Vanilla.js, HTML, CSS
