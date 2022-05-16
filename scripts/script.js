@@ -6,7 +6,7 @@ window.addEventListener('load', () => {
   canvas.height = 600;
 
   //Settings
-  ctx.lineWidth = 20;
+  ctx.lineWidth = 30;
   ctx.lineCap = 'round';
   ctx.strokeStyle = 'red';
 
@@ -15,8 +15,11 @@ window.addEventListener('load', () => {
       this.canvasWidth = canvasWidth;
       this.canvasHeight = canvasHeight;
       this.size = this.canvasWidth * 0.3;
-      this.sides = 10;
-      this.maxLevel = 6;
+      this.sides = 6;
+      this.maxLevel = 3;
+      this.scale = 0.5;
+      this.spread = 1;
+      this.branches = 2;
     }
     draw(context) {
       context.fillRect(0, 0, this.canvasWidth, this.canvasHeight);
@@ -36,12 +39,23 @@ window.addEventListener('load', () => {
       context.moveTo(0, 0); // comienzo de la linea o donde comienza a dibujar
       context.lineTo(this.size, 0); // hacia donde va la raya o raya final o donde termina
       context.stroke();
-      context.save();
-      context.translate(this.size, 0);
-      context.scale(0.7, 0.7);
-      context.rotate(0.9);
-      this.#drawLine(context, level + 1);
-      context.restore();
+
+      for (let i = 0; i < this.branches; i++) {
+        context.save();
+        context.translate(this.size - (this.size / this.branches) * i, 0);
+        context.scale(this.scale, this.scale);
+
+        context.save();
+        context.rotate(this.spread);
+        this.#drawLine(context, level + 1);
+        context.restore();
+
+        context.save();
+        context.rotate(-this.spread);
+        this.#drawLine(context, level + 1);
+        context.restore();
+        context.restore();
+      }
     }
   }
 
